@@ -1,0 +1,21 @@
+class Solution {
+    int romanToInt(String s) {
+        int res = 0, prev = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int value = getValue(s.charAt(i));
+            res += value < prev ? -value : value;
+            prev = value;
+        }
+        return res;
+    }
+
+    int getValue(char c) {
+        return c == 'I' ? 1 : c == 'V' ? 5 : c == 'X' ? 10 : c == 'L' ? 50 :
+               c == 'C' ? 100 : c == 'D' ? 500 : 1000;
+    }
+    public static void main(String[] args) {
+        System.out.println(new Solution().romanToInt("III"));
+        System.out.println(new Solution().romanToInt("LVIII"));
+        System.out.println(new Solution().romanToInt("MCMXCIV"));
+    }
+}
